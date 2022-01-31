@@ -1,0 +1,24 @@
+name: Initialize App Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        type: choice
+        description: Release Type
+        options: [ patch, minor, major ]
+jobs:
+  run:
+    name: Prepare '${{ github.event.inputs.release_type }}' version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.CI_PAT }}
+      - name: Prepare App for Release
+        id: artifact
+        uses: htec-infra/gha-utils/actions/init-release@feature/init-release-update
+        with:
+          release_type: ${{ github.event.inputs.release_type }}
