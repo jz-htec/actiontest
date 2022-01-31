@@ -16,8 +16,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Checkout config
+        uses: actions/checkout@v2
+        with:
+          repository: 'htec-infra/tbd-test'
+          path: 'testcfg' 
+          token: ${{ secrets.CI_PAT }}
       - name: Prepare App for Release
         id: artifact
         uses: htec-infra/gha-utils/actions/init-release@feature/init-release-update
         with:
           release_type: ${{ github.event.inputs.release_type }}
+          config_dir: 'testcfg'
