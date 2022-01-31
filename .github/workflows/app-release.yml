@@ -18,6 +18,6 @@ jobs:
           fetch-depth: 0
       - name: Prepare App for Release
         id: artifact
-        uses: htec-infra/gha-utils/actions/init-release@feature/init-release-update
+        uses: htec-infra/gha-utils/actions/init-release@6adb1c12dc43cc91275bbfb1ff3fe7a8bd79f296
         with:
           release_type: ${{ github.event.inputs.release_type }}
