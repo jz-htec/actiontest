@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.CI_PAT }}
       - name: Prepare App for Release
         id: artifact
-        uses: htec-infra/gha-utils/actions/init-release@feature/init-release-update
+        uses: htec-infra/gha-utils/actions/init-release@main
         with:
           release_type: ${{ github.event.inputs.release_type }}
           config_dir: 'testcfg'
