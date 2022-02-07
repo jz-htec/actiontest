@@ -1,0 +1,40 @@
+name: Artifacts CI
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main/master branch
+  push:
+    branches: [ main ]
+    paths:
+      - src/**
+      - infra/**
+  pull_request:
+    types: [ opened, synchronize, closed ]
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Global ENVs
+env:
+  APP_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+jobs:
+  build_and_publish:
+    name: Get repository data
+    runs-on: ubuntu-latest
+    outputs:
+      app_version: ${{ steps.repo_data.outputs.app_version }}
+    steps:
+      - name: Get repo data
+        id: repo_data
+        uses: htec-infra/gha-utils/actions/repo-data@main
+  auto_deploy:
+    name: Create GitHub Release
+    if: github.event.pull_request.merged == true  && contains(github.head_ref, 'release/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run auto-deploy
+        uses: htec-infra/gha-utils/actions/repo-dispatch@feature/new-gh-release
+        with:
+#          token: ${{ secrets.CI_PAT }}
+          event-type: new_github_release
+          client-payload: '{"env": "dev", "version": "${{ needs.build_and_publish.outputs.app_version }}"}'
