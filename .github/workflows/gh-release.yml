@@ -1,10 +1,6 @@
 name: GitHub Release
 on:
   # Triggers the workflow on pull request close event, but only for the main branch
-  pull_request:
-    types: [ closed ]
-    branches: [ main ]
-
   repository_dispatch:
     types: [ new_github_release ]
 
@@ -14,7 +10,6 @@ env:
 jobs:
   publish:
       # this job will only run if the PR has been merged and source branch is the 'release' branch
-      if: github.event.pull_request.merged == true  && contains(github.head_ref, 'release/')
       name: Publish
       runs-on: ubuntu-latest
       steps:
