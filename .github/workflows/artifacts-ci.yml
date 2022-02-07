@@ -36,6 +36,6 @@ jobs:
       - name: Run auto-deploy
         uses: htec-infra/gha-utils/actions/repo-dispatch@feature/new-gh-release
         with:
-#          token: ${{ secrets.CI_PAT }}
-          event-type: new_github_release
-          client-payload: '{"env": "dev", "version": "${{ needs.build_and_publish.outputs.app_version }}"}'
+#         gh_token: ${{ secrets.CI_PAT }}
+          event_type: new_github_release
+          client_payload: '{"env": "dev", "version": "${{ needs.build_and_publish.outputs.app_version }}"}'
