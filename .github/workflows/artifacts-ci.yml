@@ -30,6 +30,7 @@ jobs:
   auto_deploy:
     name: Create GitHub Release
     if: github.event.pull_request.merged == true  && contains(github.head_ref, 'release/')
+    needs: build_and_publish
     runs-on: ubuntu-latest
     steps:
       - name: Run auto-deploy
