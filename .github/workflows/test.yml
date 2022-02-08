@@ -1,0 +1,15 @@
+name: GitHub Release Trigger and Wait
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run auto-deploy
+        uses: htec-infra/gha-utils/actions/repo-dispatch@main
+        with:
+          gh_token: ${{ secrets.CI_PAT }}
+          event_type: new_github_release
+          client_payload: '{"env": "dev", "version": "1.2.3"}'
