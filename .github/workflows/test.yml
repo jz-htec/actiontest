@@ -13,3 +13,4 @@ jobs:
           gh_token: ${{ secrets.CI_PAT }}
           event_type: new_github_release
           client_payload: '{"env": "dev", "version": "1.2.3"}'
+          wait: true
