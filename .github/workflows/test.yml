@@ -12,4 +12,4 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           message: "Test"
-          msg_format: app_release
+          msg_format: app-release
