@@ -11,7 +11,4 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Create Release
-          uses: htec-infra/gha-utils/actions/gh-release@feature/new-gh-release
-          with:
-            app_version: ${{ github.event.client_payload.version }}
-            app_revision:  ${{ github.event.client_payload.revision || github.event.pull_request.head.sha }}
+          uses: htec-infra/gha-utils/actions/gh-release@main
