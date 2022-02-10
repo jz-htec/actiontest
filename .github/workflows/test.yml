@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run auto-deploy
-        uses: htec-infra/gha-utils/actions/slack@feature/slack
+        uses: htec-infra/gha-utils/actions/slack@main
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           message: "Test"
