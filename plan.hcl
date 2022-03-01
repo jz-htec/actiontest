@@ -1,14 +1,17 @@
-[0m
-[1m[36mNote:[0m[1m Objects have changed outside of Terraform[0m
+<details>
+<summary>Plan details:</summary>
+<br>
 
-[0mTerraform detected the following changes made outside of Terraform since the
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the
 last "terraform apply":
 
-[1m  # aws_iam_policy.credentials_selfservice[0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_policy" "credentials_selfservice" {
-        [1m[0mid[0m[0m          = "arn:aws:iam::502706403852:policy/IamUserCredentialsSelfService"
-        [1m[0mname[0m[0m        = "IamUserCredentialsSelfService"
-      [33m~[0m [0m[1m[0mpolicy[0m[0m      = jsonencode( [2m# whitespace changes[0m[0m
+  # aws_iam_policy.credentials_selfservice has changed
+  ~ resource "aws_iam_policy" "credentials_selfservice" {
+        id          = "arn:aws:iam::502706403852:policy/IamUserCredentialsSelfService"
+        name        = "IamUserCredentialsSelfService"
+      ~ policy      = jsonencode( # whitespace changes
             {
                 Statement = [
                     {
@@ -88,146 +91,146 @@ last "terraform apply":
                 Version   = "2012-10-17"
             }
         )
-        [1m[0mtags[0m[0m        = {}
-        [90m# (5 unchanged attributes hidden)[0m[0m
+        tags        = {}
+        # (5 unchanged attributes hidden)
     }
 
-[1m  # aws_iam_role.this["Auditors"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-      [33m~[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
-                  [33m~[0m [0m{
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                              [31m-[0m [0m"arn:aws:iam::336020864752:root",
+  # aws_iam_role.this["Auditors"] has changed
+  ~ resource "aws_iam_role" "this" {
+      ~ assume_role_policy    = jsonencode(
+          ~ {
+              ~ Statement = [
+                  ~ {
+                      ~ Principal = {
+                          ~ AWS = [
+                              - "arn:aws:iam::336020864752:root",
                                 "arn:aws:iam::502706403852:root",
-                              [32m+[0m [0m"arn:aws:iam::336020864752:root",
+                              + "arn:aws:iam::336020864752:root",
                             ]
                         }
-                        [90m# (2 unchanged elements hidden)[0m[0m
+                        # (2 unchanged elements hidden)
                     },
                 ]
-                [90m# (1 unchanged element hidden)[0m[0m
+                # (1 unchanged element hidden)
             }
         )
-        [1m[0mid[0m[0m                    = "Auditors"
-        [1m[0mname[0m[0m                  = "Auditors"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (8 unchanged attributes hidden)[0m[0m
+        id                    = "Auditors"
+        name                  = "Auditors"
+        tags                  = {}
+        # (8 unchanged attributes hidden)
 
-        [90m# (1 unchanged block hidden)[0m[0m
+        # (1 unchanged block hidden)
     }
 
-[1m  # aws_iam_role.this["BackendTeam"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-        [1m[0mid[0m[0m                    = "BackendTeam"
-        [1m[0mname[0m[0m                  = "BackendTeam"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (9 unchanged attributes hidden)[0m[0m
+  # aws_iam_role.this["BackendTeam"] has changed
+  ~ resource "aws_iam_role" "this" {
+        id                    = "BackendTeam"
+        name                  = "BackendTeam"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
 
-      [31m-[0m [0minline_policy {}
-      [32m+[0m [0minline_policy {
-          [32m+[0m [0m[1m[0mname[0m[0m   = "SSMFullAccess"
-          [32m+[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
+      - inline_policy {}
+      + inline_policy {
+          + name   = "SSMFullAccess"
+          + policy = jsonencode(
                 {
-                  [32m+[0m [0mStatement = [
-                      [32m+[0m [0m{
-                          [32m+[0m [0mAction   = [
-                              [32m+[0m [0m"ssm:PutParameter",
-                              [32m+[0m [0m"ssm:DescribeParameters",
-                              [32m+[0m [0m"ssm:GetParameterHistory",
-                              [32m+[0m [0m"ssm:GetParametersByPath",
-                              [32m+[0m [0m"ssm:GetParameters",
-                              [32m+[0m [0m"ssm:GetParameter",
+                  + Statement = [
+                      + {
+                          + Action   = [
+                              + "ssm:PutParameter",
+                              + "ssm:DescribeParameters",
+                              + "ssm:GetParameterHistory",
+                              + "ssm:GetParametersByPath",
+                              + "ssm:GetParameters",
+                              + "ssm:GetParameter",
                             ]
-                          [32m+[0m [0mEffect   = "Allow"
-                          [32m+[0m [0mResource = "*"
-                          [32m+[0m [0mSid      = "VisualEditor0"
+                          + Effect   = "Allow"
+                          + Resource = "*"
+                          + Sid      = "VisualEditor0"
                         },
                     ]
-                  [32m+[0m [0mVersion   = "2012-10-17"
+                  + Version   = "2012-10-17"
                 }
             )
         }
     }
 
-[1m  # aws_iam_role.this["FrontendTeam"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-        [1m[0mid[0m[0m                    = "FrontendTeam"
-        [1m[0mname[0m[0m                  = "FrontendTeam"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (9 unchanged attributes hidden)[0m[0m
+  # aws_iam_role.this["FrontendTeam"] has changed
+  ~ resource "aws_iam_role" "this" {
+        id                    = "FrontendTeam"
+        name                  = "FrontendTeam"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
 
-        [90m# (1 unchanged block hidden)[0m[0m
+        # (1 unchanged block hidden)
     }
 
-[1m  # aws_iam_role.this["Observers"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-        [1m[0mid[0m[0m                    = "Observers"
-        [1m[0mname[0m[0m                  = "Observers"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (9 unchanged attributes hidden)[0m[0m
+  # aws_iam_role.this["Observers"] has changed
+  ~ resource "aws_iam_role" "this" {
+        id                    = "Observers"
+        name                  = "Observers"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
 
-        [90m# (1 unchanged block hidden)[0m[0m
+        # (1 unchanged block hidden)
     }
 
-[1m  # aws_iam_role.this["QATeam"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-      [33m~[0m [0m[1m[0massume_role_policy[0m[0m    = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
-                  [33m~[0m [0m{
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                              [31m-[0m [0m"arn:aws:iam::336020864752:root",
+  # aws_iam_role.this["QATeam"] has changed
+  ~ resource "aws_iam_role" "this" {
+      ~ assume_role_policy    = jsonencode(
+          ~ {
+              ~ Statement = [
+                  ~ {
+                      ~ Principal = {
+                          ~ AWS = [
+                              - "arn:aws:iam::336020864752:root",
                                 "arn:aws:iam::502706403852:root",
-                              [32m+[0m [0m"arn:aws:iam::336020864752:root",
+                              + "arn:aws:iam::336020864752:root",
                             ]
                         }
-                        [90m# (2 unchanged elements hidden)[0m[0m
+                        # (2 unchanged elements hidden)
                     },
                 ]
-                [90m# (1 unchanged element hidden)[0m[0m
+                # (1 unchanged element hidden)
             }
         )
-        [1m[0mid[0m[0m                    = "QATeam"
-      [33m~[0m [0m[1m[0mmanaged_policy_arns[0m[0m   = [
-          [32m+[0m [0m"arn:aws:iam::502706403852:policy/SecretsManagerReadOnly",
-            [90m# (3 unchanged elements hidden)[0m[0m
+        id                    = "QATeam"
+      ~ managed_policy_arns   = [
+          + "arn:aws:iam::502706403852:policy/SecretsManagerReadOnly",
+            # (3 unchanged elements hidden)
         ]
-        [1m[0mname[0m[0m                  = "QATeam"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (7 unchanged attributes hidden)[0m[0m
+        name                  = "QATeam"
+        tags                  = {}
+        # (7 unchanged attributes hidden)
 
-        [90m# (1 unchanged block hidden)[0m[0m
+        # (1 unchanged block hidden)
     }
 
-[1m  # aws_iam_role.this["SuperAdmins"][0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_iam_role" "this" {
-        [1m[0mid[0m[0m                    = "SuperAdmins"
-        [1m[0mname[0m[0m                  = "SuperAdmins"
-        [1m[0mtags[0m[0m                  = {}
-        [90m# (9 unchanged attributes hidden)[0m[0m
+  # aws_iam_role.this["SuperAdmins"] has changed
+  ~ resource "aws_iam_role" "this" {
+        id                    = "SuperAdmins"
+        name                  = "SuperAdmins"
+        tags                  = {}
+        # (9 unchanged attributes hidden)
 
-        [90m# (1 unchanged block hidden)[0m[0m
+        # (1 unchanged block hidden)
     }
 
-[1m  # aws_kms_alias.terraform_state[0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_kms_alias" "terraform_state" {
-        [1m[0mid[0m[0m             = "alias/devops-cryptography-key-master"
-        [1m[0mname[0m[0m           = "alias/devops-cryptography-key-master"
-        [90m# (3 unchanged attributes hidden)[0m[0m
+  # aws_kms_alias.terraform_state has changed
+  ~ resource "aws_kms_alias" "terraform_state" {
+        id             = "alias/devops-cryptography-key-master"
+        name           = "alias/devops-cryptography-key-master"
+        # (3 unchanged attributes hidden)
     }
 
-[1m  # aws_kms_key.terraform_state[0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_kms_key" "terraform_state" {
-        [1m[0mid[0m[0m                       = "0a214ab8-2cb7-4aa1-97cd-4db80775dc72"
-      [32m+[0m [0m[1m[0mmulti_region[0m[0m             = false
-      [33m~[0m [0m[1m[0mpolicy[0m[0m                   = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
-                    [90m# (1 unchanged element hidden)[0m[0m
+  # aws_kms_key.terraform_state has changed
+  ~ resource "aws_kms_key" "terraform_state" {
+        id                       = "0a214ab8-2cb7-4aa1-97cd-4db80775dc72"
+      + multi_region             = false
+      ~ policy                   = jsonencode(
+          ~ {
+              ~ Statement = [
+                    # (1 unchanged element hidden)
                     {
                         Action    = [
                             "kms:Create*",
@@ -256,24 +259,24 @@ last "terraform apply":
                         Resource  = "*"
                         Sid       = "Allow access for Key Administrators"
                     },
-                  [33m~[0m [0m{
-                      [33m~[0m [0mAction    = [
-                            [90m# (4 unchanged elements hidden)[0m[0m
+                  ~ {
+                      ~ Action    = [
+                            # (4 unchanged elements hidden)
                             "kms:DescribeKey",
-                          [32m+[0m [0m"kms:GetKeyPolicy",
-                          [32m+[0m [0m"kms:GetKeyRotationStatus",
-                          [32m+[0m [0m"kms:ListResourceTags",
-                          [32m+[0m [0m"kms:ListAliases",
+                          + "kms:GetKeyPolicy",
+                          + "kms:GetKeyRotationStatus",
+                          + "kms:ListResourceTags",
+                          + "kms:ListAliases",
                         ]
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                              [31m-[0m [0m"arn:aws:iam::502706403852:user/mike.pignataro",
-                              [31m-[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/GitHubIaC",
+                      ~ Principal = {
+                          ~ AWS = [
+                              - "arn:aws:iam::502706403852:user/mike.pignataro",
+                              - "arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/GitHubIaC",
                                 "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
                             ]
                         }
-                        [90m# (3 unchanged elements hidden)[0m[0m
+                        # (3 unchanged elements hidden)
                     },
                     {
                         Action    = [
@@ -298,65 +301,65 @@ last "terraform apply":
                         Sid       = "Allow attachment of persistent resources"
                     },
                 ]
-                [90m# (2 unchanged elements hidden)[0m[0m
+                # (2 unchanged elements hidden)
             }
         )
-        [1m[0mtags[0m[0m                     = {
+        tags                     = {
             "CostCenter" = "DevOps"
             "Name"       = "DevOpsCryptographyKey"
         }
-        [90m# (8 unchanged attributes hidden)[0m[0m
+        # (8 unchanged attributes hidden)
     }
 
-[1m  # aws_s3_bucket_policy.terraform_state[0m has changed[0m[0m
-[0m  [33m~[0m[0m resource "aws_s3_bucket_policy" "terraform_state" {
-        [1m[0mid[0m[0m     = "orbitmi-master-terraform-state"
-      [33m~[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
-                  [33m~[0m [0m{
-                      [33m~[0m [0mCondition = {
-                          [33m~[0m [0mStringNotEquals = {
-                              [33m~[0m [0maws:PrincipalArn = [
-                                  [31m-[0m [0m"arn:aws:iam::502706403852:user/mike.pignataro",
+  # aws_s3_bucket_policy.terraform_state has changed
+  ~ resource "aws_s3_bucket_policy" "terraform_state" {
+        id     = "orbitmi-master-terraform-state"
+      ~ policy = jsonencode(
+          ~ {
+              ~ Statement = [
+                  ~ {
+                      ~ Condition = {
+                          ~ StringNotEquals = {
+                              ~ aws:PrincipalArn = [
+                                  - "arn:aws:iam::502706403852:user/mike.pignataro",
                                     "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
-                                  [31m-[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
-                                  [32m+[0m [0m"arn:aws:iam::502706403852:role/GitHubIaC",
+                                  - "arn:aws:iam::502706403852:role/SuperAdmins",
+                                  + "arn:aws:iam::502706403852:role/GitHubIaC",
                                 ]
                             }
-                          [32m+[0m [0mStringNotLike   = {
-                              [32m+[0m [0maws:userId = "*:jovica.zlatanovic"
+                          + StringNotLike   = {
+                              + aws:userId = "*:jovica.zlatanovic"
                             }
                         }
-                        [90m# (5 unchanged elements hidden)[0m[0m
+                        # (5 unchanged elements hidden)
                     },
                 ]
-                [90m# (1 unchanged element hidden)[0m[0m
+                # (1 unchanged element hidden)
             }
         )
-        [90m# (1 unchanged attribute hidden)[0m[0m
+        # (1 unchanged attribute hidden)
     }
 
 
 Unless you have made equivalent changes to your configuration, or ignored the
 relevant attributes using ignore_changes, the following plan may include
 actions to undo or respond to these changes.
-[90m
-─────────────────────────────────────────────────────────────────────────────[0m
+
+─────────────────────────────────────────────────────────────────────────────
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
-  [33m~[0m update in-place
-[0m
+  ~ update in-place
+
 Terraform will perform the following actions:
 
-[1m  # aws_kms_key.terraform_state[0m will be updated in-place[0m[0m
-[0m  [33m~[0m[0m resource "aws_kms_key" "terraform_state" {
-      [32m+[0m [0m[1m[0mbypass_policy_lockout_safety_check[0m[0m = false
-        [1m[0mid[0m[0m                                 = "0a214ab8-2cb7-4aa1-97cd-4db80775dc72"
-      [33m~[0m [0m[1m[0mpolicy[0m[0m                             = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
+  # aws_kms_key.terraform_state will be updated in-place
+  ~ resource "aws_kms_key" "terraform_state" {
+      + bypass_policy_lockout_safety_check = false
+        id                                 = "0a214ab8-2cb7-4aa1-97cd-4db80775dc72"
+      ~ policy                             = jsonencode(
+          ~ {
+              ~ Statement = [
                     {
                         Action    = "kms:*"
                         Effect    = "Allow"
@@ -366,89 +369,89 @@ Terraform will perform the following actions:
                         Resource  = "*"
                         Sid       = "Enable IAM User Permissions"
                     },
-                  [33m~[0m [0m{
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                              [31m-[0m [0m"arn:aws:iam::502706403852:user/mike.pignataro",
-                              [31m-[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/GitHubIaC",
+                  ~ {
+                      ~ Principal = {
+                          ~ AWS = [
+                              - "arn:aws:iam::502706403852:user/mike.pignataro",
+                              - "arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/GitHubIaC",
                                 "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/SuperAdmins",
                             ]
                         }
-                        [90m# (4 unchanged elements hidden)[0m[0m
+                        # (4 unchanged elements hidden)
                     },
-                  [33m~[0m [0m{
-                      [33m~[0m [0mAction    = [
-                            [90m# (4 unchanged elements hidden)[0m[0m
+                  ~ {
+                      ~ Action    = [
+                            # (4 unchanged elements hidden)
                             "kms:DescribeKey",
-                          [31m-[0m [0m"kms:GetKeyPolicy",
-                          [31m-[0m [0m"kms:GetKeyRotationStatus",
-                          [31m-[0m [0m"kms:ListResourceTags",
-                          [31m-[0m [0m"kms:ListAliases",
+                          - "kms:GetKeyPolicy",
+                          - "kms:GetKeyRotationStatus",
+                          - "kms:ListResourceTags",
+                          - "kms:ListAliases",
                         ]
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                                [90m# (1 unchanged element hidden)[0m[0m
+                      ~ Principal = {
+                          ~ AWS = [
+                                # (1 unchanged element hidden)
                                 "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/SuperAdmins",
                             ]
                         }
-                        [90m# (3 unchanged elements hidden)[0m[0m
+                        # (3 unchanged elements hidden)
                     },
-                  [33m~[0m [0m{
-                      [33m~[0m [0mPrincipal = {
-                          [33m~[0m [0mAWS = [
-                              [31m-[0m [0m"arn:aws:iam::502706403852:user/mike.pignataro",
-                              [31m-[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/GitHubIaC",
+                  ~ {
+                      ~ Principal = {
+                          ~ AWS = [
+                              - "arn:aws:iam::502706403852:user/mike.pignataro",
+                              - "arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/GitHubIaC",
                                 "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
-                              [32m+[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
+                              + "arn:aws:iam::502706403852:role/SuperAdmins",
                             ]
                         }
-                        [90m# (5 unchanged elements hidden)[0m[0m
+                        # (5 unchanged elements hidden)
                     },
                 ]
-                [90m# (2 unchanged elements hidden)[0m[0m
+                # (2 unchanged elements hidden)
             }
         )
-        [1m[0mtags[0m[0m                               = {
+        tags                               = {
             "CostCenter" = "DevOps"
             "Name"       = "DevOpsCryptographyKey"
         }
-        [90m# (9 unchanged attributes hidden)[0m[0m
+        # (9 unchanged attributes hidden)
     }
 
-[1m  # aws_s3_bucket_policy.terraform_state[0m will be updated in-place[0m[0m
-[0m  [33m~[0m[0m resource "aws_s3_bucket_policy" "terraform_state" {
-        [1m[0mid[0m[0m     = "orbitmi-master-terraform-state"
-      [33m~[0m [0m[1m[0mpolicy[0m[0m = jsonencode(
-          [33m~[0m [0m{
-              [33m~[0m [0mStatement = [
-                  [33m~[0m [0m{
-                      [33m~[0m [0mCondition = {
-                          [33m~[0m [0mStringNotEquals = {
-                              [33m~[0m [0maws:PrincipalArn = [
-                                  [31m-[0m [0m"arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
+  # aws_s3_bucket_policy.terraform_state will be updated in-place
+  ~ resource "aws_s3_bucket_policy" "terraform_state" {
+        id     = "orbitmi-master-terraform-state"
+      ~ policy = jsonencode(
+          ~ {
+              ~ Statement = [
+                  ~ {
+                      ~ Condition = {
+                          ~ StringNotEquals = {
+                              ~ aws:PrincipalArn = [
+                                  - "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
                                     "arn:aws:iam::502706403852:role/GitHubIaC",
-                                  [32m+[0m [0m"arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
-                                  [32m+[0m [0m"arn:aws:iam::502706403852:role/SuperAdmins",
+                                  + "arn:aws:iam::502706403852:role/OrganizationAccountAccessRole",
+                                  + "arn:aws:iam::502706403852:role/SuperAdmins",
                                 ]
                             }
-                          [33m~[0m [0mStringNotLike   = {
-                              [33m~[0m [0maws:userId = "*:jovica.zlatanovic" [33m->[0m [0m[
-                                  [32m+[0m [0m"*:jovica.zlatanovic",
+                          ~ StringNotLike   = {
+                              ~ aws:userId = "*:jovica.zlatanovic" -> [
+                                  + "*:jovica.zlatanovic",
                                 ]
                             }
                         }
-                        [90m# (5 unchanged elements hidden)[0m[0m
+                        # (5 unchanged elements hidden)
                     },
                 ]
-                [90m# (1 unchanged element hidden)[0m[0m
+                # (1 unchanged element hidden)
             }
         )
-        [90m# (1 unchanged attribute hidden)[0m[0m
+        # (1 unchanged attribute hidden)
     }
 
-[0m[1mPlan:[0m 0 to add, 2 to change, 0 to destroy.
-[0m
+Plan: 0 to add, 2 to change, 0 to destroy.
+</details>
