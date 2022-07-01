@@ -27,7 +27,7 @@ jobs:
       - name: Comment PR with Plan
         uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: file::plan.hcl
 #   auto_deploy:
 #     name: Create GitHub Release
