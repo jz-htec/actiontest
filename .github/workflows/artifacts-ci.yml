@@ -25,7 +25,7 @@ jobs:
 #       app_version: ${{ steps.repo_data.outputs.app_version }}
     steps:
       - name: Comment PR with Plan
-        uses: htec-infra/gha-utils/actions/comment-pr@main
+        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: file::plan.hcl
