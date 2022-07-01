@@ -38,7 +38,7 @@ jobs:
             " > test.txt
         
       - name: Comment PR with Plan
-        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.2
+        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
         with:
           message: file::test.txt
 #   auto_deploy:
