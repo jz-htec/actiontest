@@ -24,10 +24,22 @@ jobs:
 #     outputs:
 #       app_version: ${{ steps.repo_data.outputs.app_version }}
     steps:
+      - uses: actions/checkout@v2
+      - name: print file
+        run: |
+          echo "sfdasdjflasjkfda
+            asdf
+            asdfasdfasd
+            fa
+            sdf
+            asdf
+            asdfadsfasdf 
+            <b>adsfadsfasDF</b>
+            " > test.txt
+        
       - name: Comment PR with Plan
         uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: file::plan.hcl
 #   auto_deploy:
 #     name: Create GitHub Release
