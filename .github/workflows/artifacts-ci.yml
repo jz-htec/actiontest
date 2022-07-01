@@ -40,7 +40,7 @@ jobs:
       - name: Comment PR with Plan
         uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
         with:
-          message: file::test.txt
+          message: file::plan.hcl
 #   auto_deploy:
 #     name: Create GitHub Release
 #     if: github.event.pull_request.merged == true  && contains(github.head_ref, 'release/')
