@@ -34,9 +34,8 @@ jobs:
         run: |
           echo "Test" > text.txt
       - name: Create a comment on PR
-        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
-        env:
-          GITHUB_TOKEN: ${{ secrets.gh_token }}
+        uses: htec-infra/gha-utils/actions/comment-pr@main
         with:
+          gh_token:  ${{ secrets.gh_token }}
           message: "file::text.txt"
 
