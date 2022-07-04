@@ -11,7 +11,7 @@ on:
 # Global ENVs
 jobs:
   build_and_publish:
-    uses: .github/workflows/reuse.yaml@main
+    uses: ./.github/workflows/reuse.yaml
     with:
       rocm_release: ${{ github.event.inputs.rocm_release || '5.1' }}
       result_number: ${{ github.event.inputs.result_number || '10' }}
