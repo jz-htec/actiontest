@@ -15,32 +15,38 @@ on:
   workflow_dispatch:
 
 # Global ENVs
-env:
-  APP_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
 jobs:
   build_and_publish:
-    name: Get repository data
-    runs-on: ubuntu-latest
-#     outputs:
-#       app_version: ${{ steps.repo_data.outputs.app_version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: print file
-        run: |
-          echo "sfdasdjflasjkfda
-            asdf
-            asdfasdfasd
-            fa
-            sdf
-            asdf
-            asdfadsfasdf 
-            <b>adsfadsfasDF</b>
-            " > test.txt
+    uses: migraphx-benchmark/actions/.github/workflows/perf-test.yml@main
+    with:
+      rocm_release: ${{ github.event.inputs.rocm_release || '5.1' }}
+      result_number: ${{ github.event.inputs.result_number || '10' }}
+      flags: ${{ github.event.inputs.flags || '-s' }} 
+      performance_reports_repo: ${{ github.event.inputs.performance_reports_repo || 'migraphx-benchmark/migraphx-reports' }} 
+    secrets:
+      gh_token: ${{ secrets.MIGRAPHX_BOT_TOKEN }}
+#     name: Get repository data
+#     runs-on: ubuntu-latest
+# #     outputs:
+# #       app_version: ${{ steps.repo_data.outputs.app_version }}
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: print file
+#         run: |
+#           echo "sfdasdjflasjkfda
+#             asdf
+#             asdfasdfasd
+#             fa
+#             sdf
+#             asdf
+#             asdfadsfasdf 
+#             <b>adsfadsfasDF</b>
+#             " > test.txt
         
-      - name: Comment PR with Plan
-        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
-        with:
-          message: file::plan.hcl
+#       - name: Comment PR with Plan
+#         uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
+#         with:
+#           message: file::plan.hcl
 #   auto_deploy:
 #     name: Create GitHub Release
 #     if: github.event.pull_request.merged == true  && contains(github.head_ref, 'release/')
