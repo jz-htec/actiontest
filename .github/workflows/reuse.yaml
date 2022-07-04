@@ -23,14 +23,13 @@ on:
       gh_token:
         description: 'Github Access Token'
         required: true
-        
-env:
 
 
 jobs:
 
   execute_scripts:
     name: Execute scripts
+    runs-on: ubuntu-latest
     steps:
       - name: Execute comment script
         id: auto_comment
