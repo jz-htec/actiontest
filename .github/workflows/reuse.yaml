@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      rocm_release:
+        type: string
+        description: ROCm release version
+        required: true
+      performance_reports_repo:
+        type: string
+        description: Result repository
+        required: true
+      result_number:
+        type: string
+        description: Number of last results
+        required: true
+      flags:
+        type: string
+        description: -m for Max value; -s for Std dev; -r 'path' for Threshold file
+        required: true
+    secrets:
+      gh_token:
+        description: 'Github Access Token'
+        required: true
+        
+env:
+
+
+jobs:
+
+  execute_scripts:
+    name: Execute scripts
+    steps:
+      - name: Execute comment script
+        id: auto_comment
+        if: ${{ github.event_name != 'schedule' }}
+        run: |
+          echo "Test" > text.txt
+      - name: Create a comment on PR
+        uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.gh_token }}
+        with:
+          message: "file::text.txt"
+
