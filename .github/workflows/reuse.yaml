@@ -36,6 +36,6 @@ jobs:
       - name: Create a comment on PR
         uses: htec-infra/gha-utils/actions/comment-pr@main
         with:
-          gh_token:  ${{ secrets.gh_token }}
+#           gh_token:  ${{ secrets.gh_token }}
           message: "file::text.txt"
 
