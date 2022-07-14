@@ -1,12 +1,6 @@
 name: Artifacts CI
 
 on:
-  # Triggers the workflow on push or pull request events but only for the main/master branch
-#   push:
-#     branches: [ main ]
-#     paths:
-#       - src/**
-#       - infra/**
   pull_request:
     types: [ opened, synchronize, closed ]
     branches: [ main ]
@@ -22,8 +16,6 @@ permissions:
   id-token: write
 
 # Global ENVs
-env:
-  APP_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
 jobs:
   build_and_publish:
     name: Get repository data
@@ -31,23 +23,6 @@ jobs:
 #     outputs:
 #       app_version: ${{ steps.repo_data.outputs.app_version }}
     steps:
-#       - uses: actions/checkout@v2
-#       - name: print file
-#         run: |
-#           echo "sfdasdjflasjkfda
-#             asdf
-#             asdfasdfasd
-#             fa
-#             sdf
-#             asdf
-#             asdfadsfasdf 
-#             <b>adsfadsfasDF</b>
-#             " > test.txt
-        
-#       - name: Comment PR with Plan
-#         uses: htec-infra/gha-utils/actions/comment-pr@v0.3.3
-#         with:
-#           message: file::plan.hcl
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
